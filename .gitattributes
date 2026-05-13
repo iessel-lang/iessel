@@ -1,0 +1,4 @@
+# Force Linguist to detect and include everything in stats
+* linguist-vendored=false
+* linguist-generated=false
+* linguist-detectable=true
