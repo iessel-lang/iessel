@@ -1,0 +1,18 @@
+{
+  "name": "iessel",
+  "version": "1.0.0",
+  "bin": "il/il.js",
+  "pkg": {
+    "assets": [
+      "il/ilt.js"
+    ],
+    "targets": [
+      "node18-win-x64",
+      "node18-linux-x64",
+      "node18-macos-x64"
+    ]
+  },
+  "devDependencies": {
+    "rcedit": "^5.0.2"
+  }
+}

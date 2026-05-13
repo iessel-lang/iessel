@@ -1,0 +1,50 @@
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="7946D6C3-06B5-48F2-AEB1-6C0CE95FEE0C" UpgradeCode="92FC1F42-FEA2-4997-B071-8FE5DA2D1D56" Version="1.4.0.0" Language="1033" Name="Iessel" Manufacturer="Iessel Devs">
+    <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Comments="Iessel Installer" Manufacturer="The Iessel Devs" />
+    
+    <Media EmbedCab="yes" Cabinet="media1.cab" Id="1" />
+    <Icon Id="MyIcon" SourceFile="..\icons\logo.ico" />
+    <WixVariable Id="WixUIDialogBmp" Value="Back.png" />
+    <WixVariable Id="WixUIBannerBmp" Value="Header.png" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <Property Id="ARPPRODUCTICON" Value="MyIcon" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="MyAppFolder" Name="Iessel" />
+      </Directory>
+    </Directory>
+
+    <ComponentGroup Id="RemoveFolders">
+      <ComponentRef Id="Remove.ProgramFiles64Folder" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="Iessel">
+      <ComponentRef Id="CId248ED8BC" />
+    </ComponentGroup>
+
+    <Feature Id="ProductFeature" Title="Main Feature" Description="the main feature dont do any stuff">
+      <ComponentGroupRef Id="RemoveFolders" />
+      <ComponentGroupRef Id="Iessel" />
+    </Feature>
+
+    <UIRef Id="WixUI_FeatureTree" />
+
+    <DirectoryRef Id="ProgramFiles64Folder">
+      <Component Id="Remove.ProgramFiles64Folder" Guid="03B4AD41-7928-4335-88F3-C1FAFA36B22D">
+        <RemoveFolder Id="ProgramFiles64Folder" On="uninstall" />
+        <RegistryValue Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="MyAppFolder">
+      <Component Id="CId248ED8BC" Guid="F7D3D679-7419-40A1-9C57-E65C1D2500F6" Win64="yes">
+        <File Id="FIdE5A66672" Name="iessel.exe" Source="..\win32\iessel.exe" KeyPath="yes" />
+        
+        <Environment Id="PATH" Name="PATH" Value="[MyAppFolder]" Permanent="no" Part="last" Action="set" System="yes" />
+        
+        <CreateFolder />
+      </Component>
+    </DirectoryRef>
+  </Product>
+</Wix>
