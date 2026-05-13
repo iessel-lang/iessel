@@ -2,3 +2,4 @@
 * linguist-vendored=false
 * linguist-generated=false
 * linguist-detectable=true
+*.js linguist-language=Gherkin
